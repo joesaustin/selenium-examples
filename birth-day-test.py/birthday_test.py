@@ -1,17 +1,43 @@
 from selenium import webdriver
+import calc_functions
+import time
 import unittest
 
-class AgeCalculator():
+class AgeCalculator(unittest.TestCase):
     def setUp(self):
         browser = webdriver.DesiredCapabilities.CHROME
         self.driver = webdriver.Remote(desired_capabilities=browser)
         self.url = "http://www.calculator.net/age-calculator.html"
+        self.calculator = calc_functions.calFunctions()
+        
         
     def test_age_calculator(self):
         self.driver.get(self.url)
+        months = self.calculator.months
+        
+        self.calculator.update_birth_month(self.driver, months.index('Jan'))
+        self.calculator.update_birth_day(self.driver, "9")
+        self.calculator.update_birth_year(self.driver, "1973")
+        
+        self.driver.find_element_by_css_selector("input[src='/img/calculate.png']").click()
+        time.sleep(5)
+
         
     def tearDown(self):
         self.driver.quit()
+
+    def select_dropdown(self, driver, value):
+        options = driver.find_elements_by_tag_name("option")
+        i = len(options)
+        x = 0
+        while x < i:
+            if options[x].text == value:
+                options[x].click()
+                break
+            else:
+                x = (x+1) 
+        if x == i:
+            print "could not find "+value+" in select drop down"
 
 if __name__ == "__main__":
     unittest.main()
