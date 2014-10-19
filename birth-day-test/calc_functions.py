@@ -19,7 +19,6 @@ class calFunctions():
                         "Oct":["31"],
                         "Nov":["30"],
                         "Dec":["31"]}
-
     
     def is_leap(self, year):
         status = calendar.isleap(year)
