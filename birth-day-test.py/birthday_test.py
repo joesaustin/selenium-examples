@@ -1,3 +1,4 @@
+from datetime import date
 from selenium import webdriver
 import calc_functions
 import time
@@ -13,15 +14,23 @@ class AgeCalculator(unittest.TestCase):
         
     def test_age_calculator(self):
         self.driver.get(self.url)
-        months = self.calculator.months
+        today = date.today()
         
-        self.calculator.update_birth_month(self.driver, months.index('Jan'))
-        self.calculator.update_birth_day(self.driver, "9")
-        self.calculator.update_birth_year(self.driver, "1973")
-        
+        bday = self.calculator.genereate_random_birthday()
+        born_date = date(int(bday["year"]), int(bday["month_num"]), int(bday["day"]))
+        self.calculator.update_birth_month(self.driver, bday["month"])
+        self.calculator.update_birth_day(self.driver, bday["day"])
+        self.calculator.update_birth_year(self.driver, bday["year"])
         self.driver.find_element_by_css_selector("input[src='/img/calculate.png']").click()
-        time.sleep(5)
-
+        results = self.calculator.get_results_text(self.driver)
+        #print results
+        
+        print results.split('\n')
+        line = [i for i, ltr in enumerate(results) if ltr == "\n"]        
+ 
+        age = self.calculator.calculate_age(born_date, today)
+        
+        
         
     def tearDown(self):
         self.driver.quit()
