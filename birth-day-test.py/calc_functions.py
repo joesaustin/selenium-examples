@@ -53,7 +53,27 @@ class calFunctions():
         start = text.index("Age:")
         end = text.index("Date of Birth")
         results = text[start:end]
-        return results
+        results = (results.split("\n"))
+        web_ages = {"years_months_days":str(results[1]),
+                "months_days":str(results[2]),
+                "weeks_days":str(results[3]),
+                "total_days":str(results[4]),
+                "total_hours":str(results[5]),
+                "total_minutes":str(results[6]),
+                "total_seconds":str(results[7])}
+        return web_ages
+    
+    def generate_age_string(self, born, given_date):
+        age = self.calculate_age(born, given_date)
+        age_str={"years_months_days":"%s years %s months %s days" %(age["years"], age["rd_months"], age["rd_days"]),
+                 "months_days":"or %s months %s days" %(age["total_months"], age["rd_days"]),
+                 "weeks_days":"or %s weeks %s days" %(age["weeks"], age["remaining_days"]),
+                 "total_days":"or %s days" %(age["total_days"]),
+                 "total_hours":"or %s hours" %(age["hours"]),
+                 "total_minutes":"or %s minutes" %(age["minutes"]),
+                 "total_seconds":"or %s seconds" %(age["seconds"])}
+        return age_str
+        
     
     def calculate_age(self, born, given_date):
         age={}

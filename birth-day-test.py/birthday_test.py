@@ -22,15 +22,12 @@ class AgeCalculator(unittest.TestCase):
         self.calculator.update_birth_day(self.driver, bday["day"])
         self.calculator.update_birth_year(self.driver, bday["year"])
         self.driver.find_element_by_css_selector("input[src='/img/calculate.png']").click()
-        results = self.calculator.get_results_text(self.driver)
-        #print results
         
-        print results.split('\n')
-        line = [i for i, ltr in enumerate(results) if ltr == "\n"]        
- 
-        age = self.calculator.calculate_age(born_date, today)
+        web_age = self.calculator.get_results_text(self.driver)       
+        calc_age = self.calculator.generate_age_string(born_date, today)
         
-        
+        for key, value in web_age.iteritems():
+            self.assertEqual(value,calc_age[key] , "web value reads %s, but should be %s" %(value, calc_age[key]))     
         
     def tearDown(self):
         self.driver.quit()
