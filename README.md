@@ -18,4 +18,8 @@ Dependencies
 
 4) Start the selenium hub:
 
-    $ java -jar selenium-server-standalone-verson.jar -role hub
+    $ java -jar selenium-server-standalone-version.jar -role hub
+
+5) Start the selenium node:
+
+    $ java -jar selenium-server-standalone-version.jar -role node -hub http://localhost:4444/grid/register -trustAllSSLCertificates
