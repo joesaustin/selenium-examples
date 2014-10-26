@@ -8,12 +8,14 @@ The birth-day-test folder contains a script that is a little more advance and te
 Dependencies
 ------------
 
-1) Install selenium
+1) Install selenium:
+
     $ pip install selenium
 
-2) Download [selenium rc](http://docs.seleniumhq.org/download/) 
+2) Download [selenium rc](http://docs.seleniumhq.org/download/)
 
 3) Download [chromedriver](http://chromedriver.storage.googleapis.com/index.html)
 
-4) Start the selenium hub
+4) Start the selenium hub:
+
     $ java -jar selenium-server-standalone-verson.jar -role hub
