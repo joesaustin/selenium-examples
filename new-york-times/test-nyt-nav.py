@@ -1,6 +1,4 @@
-import os
-import time
-import unittest
+import os, time, unittest
 from selenium import webdriver
 
 class TestNYTNav(unittest.TestCase):
