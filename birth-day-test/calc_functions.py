@@ -1,8 +1,7 @@
-import calendar
+import calendar, time
 from datetime import date
 from dateutil import relativedelta as rdelta
 from random import randrange
-import time
 
 class calFunctions():
     def __init__(self):
