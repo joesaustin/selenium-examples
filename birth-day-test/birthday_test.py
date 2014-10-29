@@ -1,8 +1,7 @@
 from datetime import date
 from selenium import webdriver
 import calc_functions
-import time
-import unittest
+import time, unittest
 
 class AgeCalculator(unittest.TestCase):
     def setUp(self):
