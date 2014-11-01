@@ -30,6 +30,11 @@ class calFunctions():
         year = randrange(1800,2015)
         birthday = {"month":month_text, "day":str(day), "year": str(year), "month_num":(self.months.index(month_text)+1)}
         return birthday
+    
+    def update_birthday(self, driver, bday):
+        self.update_birth_month(driver, bday["month"])
+        self.update_birth_day(driver, bday["day"])
+        self.update_birth_year(driver, bday["year"])
         
     def update_birth_month(self, driver, month):
         months = driver.find_element_by_id("today_Month_ID")

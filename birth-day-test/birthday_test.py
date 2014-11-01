@@ -17,9 +17,7 @@ class AgeCalculator(unittest.TestCase):
         
         bday = self.calculator.genereate_random_birthday()
         born_date = date(int(bday["year"]), int(bday["month_num"]), int(bday["day"]))
-        self.calculator.update_birth_month(self.driver, bday["month"])
-        self.calculator.update_birth_day(self.driver, bday["day"])
-        self.calculator.update_birth_year(self.driver, bday["year"])
+        self.calculator.update_birthday(self.driver, bday)
         self.driver.find_element_by_css_selector("input[src='/img/calculate.png']").click()
         
         web_age = self.calculator.get_results_text(self.driver)       
